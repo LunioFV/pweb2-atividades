@@ -1,0 +1,10 @@
+# Sobe o frontend (React). O backend NestJS roda localmente:
+#     cd backend && npm install && npm run start:dev   # porta 3000
+services:
+  frontend:
+    build: ./frontend
+    container_name: web2-todo-nest-frontend
+    ports:
+      - "5173:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

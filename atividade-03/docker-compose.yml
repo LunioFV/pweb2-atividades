@@ -1,0 +1,26 @@
+# Sobe o frontend (React) e o PostgreSQL em containers.
+# O backend NestJS roda localmente:
+#     cd backend && npm install && npm run migration:run && npm run seed && npm run start:dev
+services:
+  frontend:
+    build: ./frontend
+    container_name: web2-todo-nest-frontend
+    ports:
+      - "5173:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  db:
+    image: postgres:16-alpine
+    container_name: web2-todo-db
+    environment:
+      POSTGRES_USER: todo
+      POSTGRES_PASSWORD: todo
+      POSTGRES_DB: todo
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
